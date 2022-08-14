@@ -1,6 +1,7 @@
 <?php
 if(isset($_POST['login'])){
-    include "dbconnect.php";
+    // include "dbconnect.php";
+    include "connect.php";
     $username=$_POST['username'];
     $email=$_POST['email'];
     $password=md5($_POST['password']);

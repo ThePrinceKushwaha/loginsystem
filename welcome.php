@@ -5,7 +5,8 @@ if(!isset($_SESSION['loggedin']) || $_SESSION['loggedin']!=true){
     header("location:login.php");
     exit;
 }
-include "dbconnect.php";
+// include "dbconnect.php";
+include "connect.php";
 ?>
 
 
