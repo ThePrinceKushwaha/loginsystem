@@ -38,7 +38,7 @@ if($_SERVER["REQUEST_METHOD"]=="POST"){
     }
 
 
-    if(empty($password)){
+    if(empty($_POST['password'])){
         $password_err="Password cannot be blank";
         $err=1;
     } else{
@@ -49,8 +49,8 @@ if($_SERVER["REQUEST_METHOD"]=="POST"){
     }
 
 if($err!=1){
-
-     $query= "INSERT INTO `users` (`username`,`email`,`password`) VALUES ('$username','$email','$password')";
+    $has_password = md5($password);
+     $query= "INSERT INTO `users` (`username`,`email`,`password`) VALUES ('$username','$email','$has_password')";
     $result = mysqli_query($conn,$query);
     if($result){
         echo "<script>alert('Data Inserted successfully');</script>" ;
@@ -81,15 +81,15 @@ if($err!=1){
 
     <form action="<?php $_SERVER['PHP_SELF'] ?>" method="POST">
         <div class="form-group">
-            <label for="username">Username: <input type="text" name="username" id="username" value="<?php echo $username; ?>"></label>
+            <label for="username">Username: <input type="text" name="username" id="username" value="<?php // echo $username; ?>"></label>
             <span style="color:red;"><?php echo $username_err; ?></span>
         </div>
         <div class="form-group">
-            <label for="email">Email: <input type="text" name="email" id="email" value="<?php echo $email; ?>"></label>
+            <label for="email">Email: <input type="text" name="email" id="email" value="<?php //echo $email; ?>"></label>
             <span style="color:red;"><?php echo $email_err; ?></span>
         </div>
         <div class="form-group">
-            <label for="password">Password: <input type="text" name="password" id="password" value="<?php echo $password; ?>"></label>
+            <label for="password">Password: <input type="text" name="password" id="password" value="<?php //echo $password; ?>"></label>
             <span style="color:red;"><?php echo $password_err; ?></span>
         </div>
         <input type="submit" value="signup" name="signup">
